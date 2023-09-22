@@ -1,5 +1,9 @@
 <script setup lang="ts">
 const { chapters } = useCourse();
+
+const resetError = (error: any) => {
+    error.value = null
+}
 </script>
 
 <template>
@@ -40,7 +44,20 @@ const { chapters } = useCourse();
       </div>
 
       <div class="max-w-prose p-12 bg-white rounded-md w-[65ch]">
-        <NuxtPage></NuxtPage>
+        <NuxtErrorBoundary >
+            <NuxtPage></NuxtPage>
+            <template #error="{error}" >
+                <p>oh, there must be something wrong !!!</p>
+                <code>{{ error }}</code>
+                <button
+                @click="resetError(error)"
+                    class="hover:cursor-pointer bg-gray-500 text-white font-bold"
+                >
+
+                    <p>reset</p>
+                </button>
+            </template>
+        </NuxtErrorBoundary>
       </div>
     </div>
 </template>
