@@ -22,6 +22,11 @@
     </div>
     <VideoPlayer v-if="lesson?.videoId" :videoId="lesson.videoId" />
     <p>{{ lesson?.text }}</p>
+
+    <LessonCompleteButton 
+      :model-value="isLessonCompleted"
+      @update:model-value="toggleComplete"
+    />
   </div>
 </template>
 
@@ -48,4 +53,35 @@ const title = computed(() => {
 useHead({
   title: title,
 });
+
+const progress = useState<any>("progress", () => {
+  return [];
+});
+
+const isLessonCompleted = computed(() => {
+  if (chapter.value && lesson.value) {
+    if (!progress.value[chapter.value?.number - 1]) {
+      return false;
+    }
+
+    if (!progress.value[chapter.value?.number - 1][lesson.value?.number - 1]) {
+      return false;
+    }
+
+    return progress.value[chapter.value?.number - 1][lesson.value?.number - 1];
+  } else {
+    false;
+  }
+});
+
+const toggleComplete = () => {
+  if (progress.value && chapter.value && lesson.value) {
+    if (!progress.value[chapter.value?.number - 1]) {
+      progress.value[chapter.value?.number - 1] = [];
+    }
+
+    progress.value[chapter.value?.number - 1][lesson.value?.number - 1] =
+      !isLessonCompleted.value;
+  }
+};
 </script>
