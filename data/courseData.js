@@ -37,7 +37,7 @@ export default {
     },
     {
       title: "Chapter 2",
-      slug: "chapter-3",
+      slug: "chapter-2",
       number: 2,
       lessons: [
         {
