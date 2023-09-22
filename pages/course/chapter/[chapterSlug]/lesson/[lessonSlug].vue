@@ -67,7 +67,7 @@ definePageMeta({
         );
       }
     },
-    'auth'
+      "auth"
   ],
 });
 
