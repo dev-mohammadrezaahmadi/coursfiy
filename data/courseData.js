@@ -1,0 +1,98 @@
+export default {
+  title: "Course Title",
+  chapters: [
+    {
+      title: "Chapter 1",
+      slug: "chapter-1",
+      number: 1,
+      lessons: [
+        {
+          title: "Lesson 1",
+          slug: "lesson-1",
+          number: 1,
+          downloadUrl: "",
+          videoId: 684236333,
+          text: `some text for lesson 1.`,
+        },
+        {
+          title: "Lesson 2",
+          slug: "lesson-2",
+          number: 2,
+          downloadUrl: "",
+          videoId: 687483743,
+          text: `some text for lesson 2.`,
+        },
+        {
+          title: "Lesson 3",
+          slug: "lesson-3",
+          number: 3,
+          downloadUrl: "",
+          videoId: 684243433,
+          text: `some text for lesson 2.`,
+        },
+      ],
+    },
+    {
+      title: "Chapter 2",
+      slug: "chapter-3",
+      number: 2,
+      lessons: [
+        {
+          title: "Lesson 1",
+          slug: "lesson-1",
+          number: 1,
+          downloadUrl: "",
+          videoId: 684236333,
+          text: `some text for lesson 1.`,
+        },
+      ],
+    },
+    {
+      title: "Chapter 3",
+      slug: "chapter-3",
+      number: 1,
+      lessons: [
+        {
+          title: "Lesson 1",
+          slug: "lesson-1",
+          number: 1,
+          downloadUrl: "",
+          videoId: 684236333,
+          text: `some text for lesson 1.`,
+        },
+        {
+          title: "Lesson 2",
+          slug: "lesson-2",
+          number: 2,
+          downloadUrl: "",
+          videoId: 687483743,
+          text: `some text for lesson 2.`,
+        },
+        {
+          title: "Lesson 3",
+          slug: "lesson-3",
+          number: 3,
+          downloadUrl: "",
+          videoId: 684243433,
+          text: `some text for lesson 2.`,
+        },
+        {
+          title: "Lesson 4",
+          slug: "lesson-4",
+          number: 4,
+          downloadUrl: "",
+          videoId: 932443433,
+          text: `some text for lesson 4.`,
+        },
+        {
+          title: "Lesson 5",
+          slug: "lesson-5",
+          number: 5,
+          downloadUrl: "",
+          videoId: 684299933,
+          text: `some text for lesson 5.`,
+        },
+      ],
+    },
+  ],
+};
