@@ -23,11 +23,10 @@
     <VideoPlayer v-if="lesson?.videoId" :videoId="lesson.videoId" />
     <p>{{ lesson?.text }}</p>
 
-
-      <LessonCompleteButton 
-        :model-value="isLessonCompleted"
-        @update:model-value="toggleComplete"
-      />
+    <LessonCompleteButton
+      :model-value="isLessonCompleted"
+      @update:model-value="toggleComplete"
+    />
   </div>
 </template>
 
@@ -41,11 +40,25 @@ const chapter = computed(() => {
   );
 });
 
+if (!chapter.value) {
+  throw createError({
+    statusCode: 404,
+    message: "Chapter not found",
+  });
+}
+
 const lesson = computed(() => {
   return chapter.value?.lessons.find(
     (lesson) => lesson.slug === route.params.lessonSlug
   );
 });
+
+if (!lesson.value) {
+  throw createError({
+    statusCode: 404,
+    message: "Lesson not found",
+  });
+}
 
 const title = computed(() => {
   return `${lesson.value?.title} - ${course.title}`;
@@ -68,8 +81,6 @@ const isLessonCompleted = computed(() => {
     }
 
     return progress.value[chapter.value?.number - 1][lesson.value?.number - 1];
-  } else {
-    false;
   }
 });
 
