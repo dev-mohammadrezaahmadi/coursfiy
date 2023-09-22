@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { chapters } = useCourse();
+const { chapters,title } = useCourse();
 
 const resetError = (error: any) => {
     error.value = null
@@ -7,11 +7,11 @@ const resetError = (error: any) => {
 </script>
 
 <template>
+<div class="">
     <div class="max-w-prose mb-12">
       <h1>
         <span class="font-medium">
-          Course:
-          <span class="font-bold">Matering Nuxt</span>
+          <span class="font-bold">{{ title }}</span>
         </span>
       </h1>
     </div>
@@ -60,4 +60,5 @@ const resetError = (error: any) => {
         </NuxtErrorBoundary>
       </div>
     </div>
+</div>
 </template>

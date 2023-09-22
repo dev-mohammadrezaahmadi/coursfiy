@@ -35,35 +35,40 @@ const course = useCourse();
 const route = useRoute();
 
 definePageMeta({
-  validate({ params }) {
-    const course = useCourse();
-    const chapter = computed(() => {
-      return course.chapters.find(
+  middleware: [
+    function ({ params }) {
+      const course = useCourse();
+
+      const chapter = course.chapters.find(
         (chapter) => chapter.slug === params.chapterSlug
       );
-    });
 
-    if (!chapter.value) {
-      throw createError({
-        statusCode: 404,
-        message: "Chapter not found",
+      if (!chapter) {
+        return abortNavigation(
+          createError({
+            statusCode: 404,
+            message: "Chapter not found",
+          })
+        );
+      }
+
+      const lesson = computed(() => {
+        return chapter.lessons.find(
+          (lesson) => lesson.slug === params.lessonSlug
+        );
       });
-    }
 
-    const lesson = computed(() => {
-      return chapter.value?.lessons.find(
-        (lesson) => lesson.slug === params.lessonSlug
-      );
-    });
-
-    if (!lesson.value) {
-      throw createError({
-        statusCode: 404,
-        message: "Lesson not found",
-      });
-    }
-    return true;
-  },
+      if (!lesson) {
+        return abortNavigation(
+          createError({
+            statusCode: 404,
+            message: "Lesson not found",
+          })
+        );
+      }
+    },
+    'auth'
+  ],
 });
 
 const chapter = computed(() => {
