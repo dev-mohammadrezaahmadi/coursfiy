@@ -54,7 +54,7 @@ export default {
     {
       title: "Chapter 3",
       slug: "chapter-3",
-      number: 1,
+      number: 3,
       lessons: [
         {
           title: "Lesson 1",
