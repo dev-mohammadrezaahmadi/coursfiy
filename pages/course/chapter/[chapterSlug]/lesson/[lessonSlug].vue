@@ -4,7 +4,7 @@
       Lesson {{ chapter?.number }} - {{ lesson?.number }}
     </p>
     <h2 class="my-0">{{ lesson?.title }}</h2>
-    <!-- <div class="flex space-x-4 mt-2 mb-8">
+    <div class="flex space-x-4 mt-2 mb-8">
       <NuxtLink
         v-if="lesson?.sourceUrl"
         class="font-normal text-md text-gray-500"
@@ -26,13 +26,17 @@
     <LessonCompleteButton
       :model-value="isLessonCompleted"
       @update:model-value="toggleComplete"
-    /> -->
+    />
   </div>
 </template>
 
 <script setup lang="ts">
-const course = await useCourse();
 const route = useRoute();
+const course = await useCourse();
+const lesson = await useLesson(
+  route.params.chapterSlug as string,
+  route.params.lessonSlug as string
+);
 
 definePageMeta({
   middleware: [
@@ -69,21 +73,14 @@ definePageMeta({
   ],
 });
 
-
 const chapter = computed(() => {
   return course.value.chapters.find(
     (chapter) => chapter.slug === route.params.chapterSlug
   );
 });
 
-const lesson = computed(() => {
-  return chapter.value?.lessons.find(
-    (lesson) => lesson.slug === route.params.lessonSlug
-  );
-});
-
 const title = computed(() => {
-  return `${lesson.value?.title} - ${course.value.title}`;
+  return `${lesson.value.title} - ${course.value.title}`;
 });
 
 useHead({
