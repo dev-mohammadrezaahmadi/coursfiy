@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { chapters, title } = useCourse();
+const course = await useCourse();
 
 const resetError = (error: any) => {
   error.value = null;
@@ -11,7 +11,7 @@ const resetError = (error: any) => {
     <div class="mb-4 flex justify-between items-center w-full">
       <h1 class="text-3xl">
         <span class="font-medium">
-          <span class="font-bold">{{ title }}</span>
+          <span class="font-bold">{{ course.title }}</span>
         </span>
       </h1>
       <UserCard />
@@ -24,7 +24,7 @@ const resetError = (error: any) => {
         <h3>Chapters</h3>
         <div
           class="space-y-1 mb-4 flex flex-col"
-          v-for="chapter in chapters"
+          v-for="chapter in course.chapters"
           :key="chapter.slug"
         >
           <h4>{{ chapter.title }}</h4>

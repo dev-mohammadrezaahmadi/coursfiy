@@ -1,9 +1,7 @@
 <script lang="ts" setup>
-const { title } = useCourse();
-const { query } = useRoute();
+const course = await useCourse();
 const { auth } = useSupabaseClient();
 const user = useSupabaseUser();
-const firstLesson = useFirstLesson();
 
 watchEffect(async () => {
   if (user.value) {
@@ -12,8 +10,6 @@ watchEffect(async () => {
 });
 
 const login = async () => {
-  //   const redirectTo = `${window.location.origin}${query.redirectTo}`;
-
   const { error } = await auth.signInWithOAuth({
     provider: "github",
   });
@@ -26,7 +22,7 @@ const login = async () => {
 
 <template>
   <div class="max-w-prose w-full h-9">
-    <h1>log in to {{ title }}</h1>
+    <h1>log in to {{ course.title }}</h1>
     <button
       @click="login"
       class="bg-blue-500 text-white font-bold py-2 px-4 rounded"
