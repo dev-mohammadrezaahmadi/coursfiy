@@ -1,4 +1,4 @@
-import { StorageSerializers } from '@vueuse/core'
+import { StorageSerializers } from "@vueuse/core";
 
 export default async <T>(url: string) => {
   // Use sessionStorage to cache the lesson data
@@ -7,25 +7,25 @@ export default async <T>(url: string) => {
     // By passing null as default it can't automatically
     // determine which serializer to use
 
-    serializer: StorageSerializers.object
-  })
+    serializer: StorageSerializers.object,
+  });
 
   if (!cached.value) {
-    const {data, error} = await useFetch<T>(url, {
-      headers: useRequestHeaders(['cookie'])
-    })
+    const { data, error } = await useFetch<T>(url, {
+      headers: useRequestHeaders(["cookie"]),
+    });
 
     if (error.value) {
       throw createError({
         ...error.value,
-        statusMessage: `Could not fetch data from ${url}`
-      })
+        statusMessage: `Could not fetch data from ${url}`,
+      });
     }
 
-    cached.value = data.value as T
+    cached.value = data.value as T;
   } else {
-    console.log(`Getting value from Cache fro ${url}`)
+    console.log(`Getting value from Cache from ${url}`);
   }
 
-  return cached
-}
+  return cached;
+};
